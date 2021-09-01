@@ -44,12 +44,13 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
-    "users.apps.UsersConfig",
-    "rooms.apps.RoomsConfig",
+    "conversations.apps.ConversationsConfig",
     "core.apps.CoreConfig",
-    "reviews.apps.ReviewsConfig",
-    "reservations.apps.ReservationsConfig",
     "lists.apps.ListsConfig",
+    "reservations.apps.ReservationsConfig",
+    "reviews.apps.ReviewsConfig",
+    "rooms.apps.RoomsConfig",
+    "users.apps.UsersConfig",
 ]
 
 
