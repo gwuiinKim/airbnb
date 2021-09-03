@@ -36,7 +36,10 @@ class User(AbstractUser):
     
     # default="" or null=True is required for adding some new field to existing model.     # null is for database, blank is for form
     
-    avatar = models.ImageField( blank=True)
+    avatar = models.ImageField( 
+        upload_to="avatars",
+        blank=True
+    )
     # choices only effect to form so doesn't need to migrage
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10,  blank=True)
     bio =  models.TextField(default="", blank=True)
