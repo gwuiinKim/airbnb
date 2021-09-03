@@ -29,7 +29,7 @@ class CustomUserAdmin(UserAdmin):
     list_filter = UserAdmin.list_filter + ("superhost",)
     
     list_display = (
-         "username",
+        "username",
         "first_name",
         "last_name",
         "email",
