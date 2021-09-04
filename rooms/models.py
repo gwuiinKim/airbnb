@@ -61,7 +61,7 @@ class Photo(core_models.TimeStampedModel):
         related_name = "photos",
         on_delete=models.CASCADE)
     
-    def __stf__(self):
+    def __str__(self):
         return self.caption
 
 
@@ -105,6 +105,15 @@ class Room(core_models.TimeStampedModel):
         HouseRule, 
         related_name = "rooms",
         blank=True)
+    
+    
+    # can intercept save. (override)
+    # if i want to intercept save event at admin site 
+    # using save_model
+    def save(self, *args, **kwargs):
+        self.city = str.capitalize(self.city)
+        super().save(*args, **kwargs)
+
     
     def __str__(self):
         return self.name
