@@ -47,9 +47,22 @@ class RoomAdmin(admin.ModelAdmin):
             "Basic Info", 
             {
                 "fields" : 
-                ("name", "description", "country","city", "address", "price",)
+                ("name", 
+                 "description", 
+                 "country",
+                 "city", 
+                 "address", 
+                 "price",)
             }
         ),
+        (
+            "Times", 
+            {"fields": 
+            ("check_in", "check_out", "instant_book")}),
+        (
+            "Spaces", 
+            {"fields": 
+             ("guests", "beds", "bedrooms", "baths")}),
         (
             "More About the Space",
             {
@@ -102,3 +115,6 @@ class RoomAdmin(admin.ModelAdmin):
     
     def count_photos(self, obj):
         return obj.photos.count()
+    
+    count_amenities.short_description = "Amenity Count"    
+    count_photos.short_description = "Photo Count"
