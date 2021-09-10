@@ -20,15 +20,21 @@ class HomeView(ListView):
     context_object_name = "rooms"
     
 
-# class RoomDetail(DetailView):
+class RoomDetail(DetailView):
     
-#     """ RoomDetail Definition """
+    """ RoomDetail Definition """
     
-#     model = models.Room
-def room_detail(request, pk):
-     try:
-        room = models.Room.objects.get(pk=pk)
-        return render(request, "rooms/detail.html", {"room": room})
-    except models.Room.DoesNotExist:
-        # return redirect(reverse("core:home"))
-        raise Http404()
+    template_name = "rooms/room_detail.html"
+    model = models.Room
+# def room_detail(request, pk):
+#     try:
+#         room = models.Room.objects.get(pk=pk)
+#         return render(request, "rooms/detail.html", {"room": room})
+#     except models.Room.DoesNotExist:
+#         # return redirect(reverse("core:home"))
+#         raise Http404()
+        
+def search(request):
+    city = request.GET.get("city")
+    city = str.capitalize(city)
+    return render(request, "rooms/search.html", {"city": city})
