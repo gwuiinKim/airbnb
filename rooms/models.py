@@ -122,6 +122,8 @@ class Room(core_models.TimeStampedModel):
     
     
     def get_absolute_url(self):
+#    feature for django admin      
+#        reverse get namespace:name and return actual url
         return reverse("rooms:detail", kwargs={"pk": self.pk})
     
     def total_rating(self):

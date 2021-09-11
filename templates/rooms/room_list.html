@@ -11,6 +11,8 @@
         <h3>
 <!--        detail(name) inside of rooms(namespace) and argument
                             /rooms/1    
+
+            url tag          namespace:name  argument
 -->
             <a href='{% url "rooms:detail" room.pk %}'>
                 {{room.name}} / ${{room.price}}
