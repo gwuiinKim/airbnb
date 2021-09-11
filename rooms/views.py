@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, UpdateView
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from . import models
+# from users import mixins as user_mixins
 
 
 #reference-> ccbv.co.uk 
@@ -42,6 +43,7 @@ def search(request):
     return render(request, "rooms/search.html", {"city": city})
 
 
+# class EditRoom(user_mixins.LoggedInOnlyView, UpdateView):
 class EditRoom(UpdateView):
     
     """ EditRoom Definition"""
@@ -67,3 +69,25 @@ class EditRoom(UpdateView):
         "facilities",
         "house_rules",
     )
+    
+    def get_object(self, queryset=None):
+        room = super().get_object(queryset=queryset)
+        if room.host.pk != self.request.user.pk:
+            raise Http404()
+            
+        return room
+    
+#     this class automatically call get_object function to look for room whose pk is pk
+#     so we should override get_object method
+
+# # class RoomPhotosView(user_mixins.LoggedInOnlyView, DetailView):
+class RoomPhotosView(DetailView):
+
+    model = models.Room
+    template_name = "rooms/room_photos.html"
+
+    def get_object(self, queryset=None):
+        room = super().get_object(queryset=queryset)
+        if room.host.pk != self.request.user.pk:
+            raise Http404()
+        return room
